@@ -1,5 +1,5 @@
 import React from 'react'
-import LoopContext from '../utils/LoopContext'
+import LoopContext from '../../utils/LoopContext'
 
 type Props = {
   offset: [number, number]
@@ -30,7 +30,7 @@ export default class Sprite extends React.Component<Props, State> {
     src: '',
     state: 0,
     steps: [],
-    ticksPerFrame: 4,
+    ticksPerFrame: 5,
     tileHeight: 64,
     tileWidth: 64,
   }

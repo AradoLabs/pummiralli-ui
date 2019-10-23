@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
-import LoopContext from '../utils/LoopContext'
-import GameLoop from '../utils/GameLoop'
+import LoopContext from '../../utils/LoopContext'
+import GameLoop from '../../utils/GameLoop'
 
 function LoopConsumer({ children }: { children: any }) {
   const loopContext = useContext(LoopContext)

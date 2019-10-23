@@ -14,7 +14,6 @@ const Checkpoint = React.memo(({ position }: Props) => {
 
   return (
     <Circle
-      key={`checkpoint-${x}-${y}`}
       x={x}
       y={y}
       radius={10}

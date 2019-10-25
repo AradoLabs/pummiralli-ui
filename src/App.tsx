@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Group, Text } from 'react-konva'
 import { RootState } from './domain'
@@ -7,7 +7,7 @@ import Loop from './ui/game-kit-components/Loop'
 import Map from './ui/Map'
 import Character from './ui/Character'
 import Route from './ui/Route'
-import useInterval from './ui/hooks/useInterval'
+import useAnimationFrame from './ui/hooks/useAnimationFrame'
 import GameLoader from './loader/gameLoader'
 
 const gameLoader = new GameLoader()
@@ -19,21 +19,23 @@ export default function App() {
   const [tick, setTick] = useState(1)
   const dispatch = useDispatch()
 
-  const gameEventsForTick = gameLoader.parseGameEvents(tick)
-  let allGameEventsProcessed = false
-  if (gameEventsForTick === undefined) {
-    allGameEventsProcessed = true
-  }
+  useAnimationFrame(30, () => {
+    if (gameLoader.finalTick && tick >= gameLoader.finalTick) {
+      return
+    }
+    setTick(prevTick => prevTick + 1)
+  })
 
-  useInterval(
-    () => {
-      if (gameEventsForTick) {
-        gameEventsForTick.forEach(dispatch)
-      }
-      setTick(tick + 1)
-    },
-    allGameEventsProcessed ? null : 50,
-  )
+  useEffect(() => {
+    const gameEventsForTick = gameLoader.parseGameEvents(tick)
+    let allGameEventsProcessed = false
+    if (gameEventsForTick === undefined) {
+      allGameEventsProcessed = true
+    }
+    if (gameEventsForTick) {
+      gameEventsForTick.forEach(dispatch)
+    }
+  })
 
   const players = Object.values(gameState.players)
   return (

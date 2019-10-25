@@ -1,3 +1,4 @@
+import R from 'ramda'
 import { Action } from 'redux'
 import { HistoryEvent } from './messages'
 import { gameActions } from '../domain/game'
@@ -5,9 +6,11 @@ import gameJson from './2019-10-20T15:42:30.992Z.json'
 
 export default class GameLoader {
   events: HistoryEvent[] = []
+  finalTick: number | null = null
 
   loadGameEvents(): void {
     this.events = gameJson as HistoryEvent[]
+    this.finalTick = Math.max(...this.events.map(event => event.tick))
   }
 
   parseGameEvents(tick: number): Action[] | undefined {

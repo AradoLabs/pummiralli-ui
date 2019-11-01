@@ -19,7 +19,7 @@ export default function App() {
   const [tick, setTick] = useState(1)
   const dispatch = useDispatch()
 
-  useAnimationFrame(30, () => {
+  useAnimationFrame(15, () => {
     if (gameLoader.finalTick && tick >= gameLoader.finalTick) {
       return
     }
@@ -28,14 +28,10 @@ export default function App() {
 
   useEffect(() => {
     const gameEventsForTick = gameLoader.parseGameEvents(tick)
-    let allGameEventsProcessed = false
-    if (gameEventsForTick === undefined) {
-      allGameEventsProcessed = true
-    }
     if (gameEventsForTick) {
       gameEventsForTick.forEach(dispatch)
     }
-  })
+  }, [dispatch, tick])
 
   const players = Object.values(gameState.players)
   return (

@@ -1,4 +1,3 @@
-import R from 'ramda'
 import { Action } from 'redux'
 import { HistoryEvent } from './messages'
 import { gameActions } from '../domain/game'

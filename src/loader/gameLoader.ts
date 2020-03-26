@@ -1,7 +1,7 @@
 import { Action } from 'redux'
 import { HistoryEvent } from './messages'
 import { gameActions } from '../domain/game'
-import gameJson from './2019-10-20T15:42:30.992Z.json'
+import gameJson from './2020-03-25T17:15:10.855Z.json'
 
 export default class GameLoader {
   events: HistoryEvent[] = []

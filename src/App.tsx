@@ -19,7 +19,7 @@ export default function App() {
   const [tick, setTick] = useState(1)
   const dispatch = useDispatch()
 
-  useAnimationFrame(15, () => {
+  useAnimationFrame(30, () => {
     if (gameLoader.finalTick && tick >= gameLoader.finalTick) {
       return
     }

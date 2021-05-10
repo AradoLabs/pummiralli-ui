@@ -13,7 +13,7 @@
     "@types/webaudioapi": "^0.0.27",
     "immer": "^4.0.1",
     "konva": "^4.0.15",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "polished": "^3.4.1",
     "ramda": "^0.26.1",
     "react": "^16.10.2",
